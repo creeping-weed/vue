@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue绑定类样式</title>
+    <style>
+        .h{
+            height: 600px;
+        }
+        .w{
+            width: 600px;
+        }
+        .bgc{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input type="text" v-model="classes">
+    </div>
+    <div :class="classes"></div>
+</div>
+<script src="dist/vue.js"></script>
+<script>
+    var ve=new Vue({
+        el:'#app',
+        data:{
+            classes:'w bgc'
+        }
+    });
+</script>
+</body>
+</html>

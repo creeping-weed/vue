@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue初体验</title>
+</head>
+<body>
+<p id="name">
+    {{ myName }}
+</p>
+<script src="dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#name',
+        data: {
+            myName: '大家好！我是小明！'
+        }
+    })
+</script>
+</body>
+</html>

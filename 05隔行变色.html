@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>隔行变色</title>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="text" placeholder="请填入要添加的课程" v-model="value"><button @click="add">添加</button>
+    <ul>课程
+        <li v-for="(v,index) in list"  :key="index" :class="{red:index%2==0,green:index%2!=0}">
+            {{(index+1)}}:{{v}}
+        </li>
+    </ul>
+</div>
+<script src="dist/vue.js"></script>
+<script>
+    var ve=new Vue({
+        el:'#app',
+        data:{
+            list:['体育','英语','数学','美术','计算机网络技术','数据库'],
+            value:''
+        },
+        methods:{
+            add(){
+                console.log(this.value);
+                this.list.push(this.value);
+                this.value='';
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>品牌管理</title>
+    <style>
+        table{
+            border: 1px solid #ccc;
+        }
+        table th,table td{
+            border: 1px solid #000;
+            width: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="ipt">
+        请输入品牌名称：<input type="text" v-model="value" @keyup.13="add"> <button @click="add">添加</button>
+        <br>
+        请输入搜索关键字：<input type="text" v-model="serach">
+    </div>
+    <div class="tb">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>品牌名称</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(v,i) in serachShow">
+                <td>{{v.id}}</td>
+                <td>{{v.name}}</td>
+                <td>{{v.time}}</td>
+                <td><button @click="remove(v)">删除</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="dist/vue.js"></script>
+<script>
+    var ve=new Vue({
+        el:'#app',
+        data:{
+            value:'',
+            list:[
+                {"id":0,"name":"劳斯莱斯","time":"2018/1/12 下午2:32:06"},
+                {"id":1,"name":"陆军一号","time":"2018/1/12 下午2:32:18"},
+                {"id":2,"name":"法拉利","time":"2018/1/12 下午2:32:26"}
+            ],
+            serach:''
+        },
+        methods:{
+            add(){
+                if(this.value){
+                    var obj={};
+                    obj.id=this.list.length!=0?this.list[this.list.length-1].id+1:0;
+                    obj.name=this.value;
+                    obj.time=new Date().toLocaleString();
+                    this.list.push(obj);
+                    this.value='';
+                }
+            },
+            remove(v){
+                var index=this.list.indexOf(v);
+                console.log(index);
+                this.list.splice(index,1)
+            }
+        },
+        computed:{
+            serachShow(){
+                var that = this.serach;
+                return this.list.filter(function(v){
+                    return v.name.indexOf(that)!=-1;
+                });
+//                return newArr;
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件对象与事件冒泡</title>
+    <style>
+        .box{
+            height: 400px;
+            background-color: #ccc;
+        }
+        .width{
+            width: 400px;
+        }
+        .box>div{
+            height: 200px;
+            width: 200px;
+            background-color: #ff66ff;
+        }
+    </style>
+</head>
+<body>
+<div id="app" @click.capture="box" :class="classes">
+    <div v-on:click.capture="smallBox">
+        <a :href="href" v-on:click.prevent.stop="link">百度</a>
+    </div>
+</div>
+<script src="dist/vue.js"></script>
+<script>
+    var ve = new Vue({
+        el:'#app',
+        data:{
+            href:'http://www.baidu.com',
+            classes:['box',{width:true}]
+        },
+        methods:{
+           box(){
+              alert('大div')
+           },
+            smallBox:function(){
+                alert('小div');
+                console.log(this);
+//                阻止事件冒泡
+//                e.stopPropagation();
+            },
+            link(){
+                alert('我不会跳转');
+                alert('我也不会冒泡');
+            }
+        }
+    })
+</script>
+</body>
+</html>

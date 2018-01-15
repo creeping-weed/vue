@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯效果</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <button v-on:click="start">{{m1}}</button>
+        <button v-on:click="stop">{{m2}}</button>
+    </div>
+    <script src="dist/vue.js"></script>
+    <script>
+        var ve=new Vue({
+            el:'#app',
+            data:{
+                message:'vue跑马灯效果展示',
+                m1:'开始',
+                m2:'停止',
+                timer:null
+            },
+            methods:{
+                start:function(){
+                   var that=this;
+                    clearInterval(this.timer);
+                   this.timer=setInterval(function(){
+                       that.message=that.message.slice(1)+that.message.slice(0,1);
+                   },200)
+                },
+                stop:function(){
+                    clearInterval(this.timer);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

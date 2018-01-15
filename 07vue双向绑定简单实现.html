@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定简单实现</title>
+</head>
+<body>
+<input type="text" id="ip">
+<script>
+    var obj={};
+    var ip=document.getElementById('ip');
+    ip.oninput=function(){
+        obj.name=this.value;
+    };
+    Object.defineProperty(obj,'name',{
+        get:function(){
+            console.log('我被获取了');
+           return this._name;
+        },
+        set:function(value){
+            console.log('我被设置了');
+            this._name=value;
+            ip.value=this._name;
+        }
+    })
+</script>
+</body>
+</html>

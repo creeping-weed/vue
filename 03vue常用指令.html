@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue常见指令</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="mes">
+    <span>{{mes}}</span>
+    <img :src="img" alt="">
+</div>
+<script src="dist/vue.js"></script>
+<script>
+//   1:双向数据绑定,与v-bind;
+    var ve=new Vue({
+        el:'#app',
+        data:{
+            mes:'123',
+            img:'http://img2.imgtn.bdimg.com/it/u=1567211408,3977725624&fm=27&gp=0.jpg'
+        }
+    })
+</script>
+</body>
+</html>
